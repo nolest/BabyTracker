@@ -1,4 +1,4 @@
-# 寶寶生活記錄專業版（Baby Tracker）
+# 寶寶生活記錄專業版（BabyTrackerTest）
 
 ## 專案概述
 
