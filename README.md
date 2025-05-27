@@ -1,2 +1,0 @@
-# BabyTrackerTest
-BabyTrackerTest AI
