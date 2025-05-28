@@ -2,6 +2,35 @@ import UIKit
 
 /// 通用圖表視圖
 class ChartView: UIView {
+    // MARK: - 數據模型
+    
+    /// 數據點結構體
+    struct DataPoint {
+        /// 日期
+        let date: Date
+        
+        /// 值
+        let value: Double
+    }
+    
+    /// 圖表數據結構體
+    struct ChartData {
+        /// 標題
+        let title: String
+        
+        /// 數據點數組
+        let dataPoints: [DataPoint]
+        
+        /// Y軸標籤
+        let yAxisLabel: String
+        
+        /// 百分位
+        let percentile: String?
+        
+        /// 平均值
+        let average: String?
+    }
+    
     // MARK: - 屬性
     
     /// 標題標籤
@@ -113,5 +142,39 @@ class ChartView: UIView {
     /// - Parameter view: 子視圖
     func addChartSubview(_ view: UIView) {
         chartContainerView.addSubview(view)
+    }
+    
+    /// 更新圖表
+    /// - Parameter chartData: 圖表數據
+    func updateChart(with chartData: ChartData) {
+        // 清除現有圖表
+        clearChart()
+        
+        // 設置標題
+        updateTitle(chartData.title)
+        
+        // 檢查數據點是否為空
+        if chartData.dataPoints.isEmpty {
+            showNoData()
+            return
+        }
+        
+        // 隱藏無數據標籤
+        hideNoData()
+        
+        // 在實際應用中，這裡應該繪製圖表
+        // 暫時添加一個標籤顯示數據點數量
+        let label = UILabel()
+        label.text = "數據點: \(chartData.dataPoints.count) | 標籤: \(chartData.yAxisLabel)"
+        label.textAlignment = .center
+        label.textColor = .darkGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChartSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: chartContainerView.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: chartContainerView.centerYAnchor)
+        ])
     }
 }

@@ -13,7 +13,7 @@ class GrowthChartViewController: UIViewController {
     private let segmentedControl = UISegmentedControl(items: ["身高", "體重", "頭圍"])
     private let timeRangeSegmentedControl = UISegmentedControl(items: ["1個月", "3個月", "6個月", "1年", "全部"])
     private let chartContainerView = UIView()
-    private let chartView = ChartView()
+    private let chartView = ChartView(title: "成長圖表")
     private let percentileLabel = UILabel()
     private let averageLabel = UILabel()
     private let loadingIndicator = UIActivityIndicatorView(style: .large)
@@ -190,7 +190,7 @@ class GrowthChartViewController: UIViewController {
         
         viewModel.$chartData
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] chartData in
+            .sink { [weak self] (chartData: ChartView.ChartData?) in
                 if let chartData = chartData {
                     self?.chartView.updateChart(with: chartData)
                     self?.updateStatistics(with: chartData)

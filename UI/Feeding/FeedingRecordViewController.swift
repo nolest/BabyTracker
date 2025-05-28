@@ -351,6 +351,14 @@ class FeedingRecordViewController: UIViewController {
             feedingTypeSegmentedControl.selectedSegmentIndex = 3
             amountLabel.isHidden = true
             amountTextField.isHidden = true
+        case .water:
+            feedingTypeSegmentedControl.selectedSegmentIndex = 4
+            amountLabel.isHidden = false
+            amountTextField.isHidden = false
+        case .other:
+            feedingTypeSegmentedControl.selectedSegmentIndex = 5
+            amountLabel.isHidden = false
+            amountTextField.isHidden = false
         }
         
         // 更新數量文本字段
@@ -395,6 +403,14 @@ class FeedingRecordViewController: UIViewController {
             viewModel.feedingType = .solidFood
             amountLabel.isHidden = true
             amountTextField.isHidden = true
+        case 4:
+            viewModel.feedingType = .water
+            amountLabel.isHidden = false
+            amountTextField.isHidden = false
+        case 5:
+            viewModel.feedingType = .other
+            amountLabel.isHidden = false
+            amountTextField.isHidden = false
         default:
             viewModel.feedingType = .breastfeeding
             amountLabel.isHidden = true

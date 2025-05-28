@@ -32,6 +32,9 @@ struct Constants {
         /// 是否啟用雲端AI分析
         static let isCloudAIEnabled = "isCloudAIEnabled"
         
+        /// 是否啟用AI分析
+        static let isAIAnalysisEnabled = "isAIAnalysisEnabled"
+        
         /// 是否啟用數據匿名化
         static let isDataAnonymizationEnabled = "isDataAnonymizationEnabled"
         
