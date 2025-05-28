@@ -1,0 +1,111 @@
+/* 
+  Localizable.strings
+  BabyTracker
+
+  English localization
+*/
+
+// Common
+"app_name" = "Baby Tracker";
+"save" = "Save";
+"cancel" = "Cancel";
+"delete" = "Delete";
+"edit" = "Edit";
+"done" = "Done";
+"loading" = "Loading...";
+"error" = "Error";
+"success" = "Success";
+"retry" = "Retry";
+"ok" = "OK";
+
+// Tabs
+"tab_home" = "Home";
+"tab_sleep" = "Sleep";
+"tab_feeding" = "Feeding";
+"tab_activity" = "Activity";
+"tab_settings" = "Settings";
+
+// Sleep
+"sleep_title" = "Sleep Tracking";
+"sleep_start" = "Sleep Start";
+"sleep_end" = "Sleep End";
+"sleep_duration" = "Duration";
+"sleep_quality" = "Quality";
+"sleep_interruptions" = "Interruptions";
+"sleep_add" = "Add Sleep Record";
+"sleep_edit" = "Edit Sleep Record";
+"sleep_delete" = "Delete Sleep Record";
+"sleep_analysis" = "Sleep Analysis";
+
+// Feeding
+"feeding_title" = "Feeding Tracking";
+"feeding_type" = "Type";
+"feeding_bottle" = "Bottle";
+"feeding_breast" = "Breast";
+"feeding_food" = "Solid Food";
+"feeding_start" = "Start Time";
+"feeding_end" = "End Time";
+"feeding_duration" = "Duration";
+"feeding_amount" = "Amount";
+"feeding_add" = "Add Feeding Record";
+"feeding_edit" = "Edit Feeding Record";
+"feeding_delete" = "Delete Feeding Record";
+"feeding_analysis" = "Feeding Analysis";
+
+// Activity
+"activity_title" = "Activity Tracking";
+"activity_type" = "Type";
+"activity_play" = "Play";
+"activity_bath" = "Bath";
+"activity_diaper" = "Diaper";
+"activity_tummy" = "Tummy Time";
+"activity_start" = "Start Time";
+"activity_end" = "End Time";
+"activity_duration" = "Duration";
+"activity_add" = "Add Activity Record";
+"activity_edit" = "Edit Activity Record";
+"activity_delete" = "Delete Activity Record";
+"activity_analysis" = "Activity Analysis";
+
+// Settings
+"settings_title" = "Settings";
+"settings_profile" = "Baby Profile";
+"settings_notifications" = "Notifications";
+"settings_cloud" = "Cloud Sync";
+"settings_theme" = "Theme";
+"settings_language" = "Language";
+"settings_about" = "About";
+"settings_privacy" = "Privacy Policy";
+"settings_terms" = "Terms of Service";
+"settings_logout" = "Log Out";
+
+// Analysis
+"analysis_title" = "Analysis";
+"analysis_sleep" = "Sleep Analysis";
+"analysis_feeding" = "Feeding Analysis";
+"analysis_activity" = "Activity Analysis";
+"analysis_growth" = "Growth Analysis";
+"analysis_prediction" = "Predictions";
+"analysis_period_day" = "Day";
+"analysis_period_week" = "Week";
+"analysis_period_month" = "Month";
+"analysis_period_year" = "Year";
+
+// Errors
+"error_network" = "Network error. Please check your connection.";
+"error_server" = "Server error. Please try again later.";
+"error_sync" = "Sync failed. Your data is saved locally.";
+"error_permission" = "Permission denied.";
+"error_unknown" = "Unknown error occurred.";
+
+// Offline Mode
+"offline_mode" = "Offline Mode";
+"offline_message" = "You are currently offline. Some features may be limited.";
+"offline_sync_pending" = "Changes will be synced when you're back online.";
+
+// AI Features
+"ai_analysis" = "AI Analysis";
+"ai_prediction" = "AI Prediction";
+"ai_recommendation" = "Recommendations";
+"ai_loading" = "Analyzing data...";
+"ai_offline" = "AI features are not available offline.";

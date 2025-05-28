@@ -20,6 +20,24 @@ struct Growth: Codable, Identifiable {
     /// 頭圍（厘米）
     let headCircumference: Double
     
+    /// 身高百分位數
+    var heightPercentile: Double? {
+        // 這裡僅為示例，實際應從getPercentileData方法獲取
+        return nil
+    }
+    
+    /// 體重百分位數
+    var weightPercentile: Double? {
+        // 這裡僅為示例，實際應從getPercentileData方法獲取
+        return nil
+    }
+    
+    /// 頭圍百分位數
+    var headCircumferencePercentile: Double? {
+        // 這裡僅為示例，實際應從getPercentileData方法獲取
+        return nil
+    }
+    
     /// 獲取百分位數據
     /// - Parameter baby: 寶寶信息
     /// - Returns: 百分位數據

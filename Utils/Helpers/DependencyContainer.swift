@@ -77,6 +77,53 @@ class DependencyContainer {
         dependencies.removeAll()
         registerDefaults()
     }
+    
+    // MARK: - 直接访问属性
+    
+    /// 睡眠记录仓库
+    var sleepRepository: SleepRecordRepository {
+        return resolve(SleepRecordRepository.self)!
+    }
+    
+    /// 活动记录仓库
+    var activityRepository: ActivityRepository {
+        return resolve(ActivityRepository.self)!
+    }
+    
+    /// 喂食记录仓库
+    var feedingRepository: FeedingRepository {
+        return resolve(FeedingRepository.self)!
+    }
+    
+    /// 睡眠模式分析器
+    var sleepPatternAnalyzer: SleepPatternAnalyzer {
+        return resolve(SleepPatternAnalyzer.self)!
+    }
+    
+    /// 日常活动分析器
+    var routineAnalyzer: RoutineAnalyzer {
+        return resolve(RoutineAnalyzer.self)!
+    }
+    
+    /// 预测引擎
+    var predictionEngine: PredictionEngine {
+        return resolve(PredictionEngine.self)!
+    }
+    
+    /// 云端AI服务
+    var cloudAIService: CloudAIService {
+        return resolve(CloudAIService.self)!
+    }
+    
+    /// 网络监控
+    var networkMonitor: NetworkMonitor {
+        return resolve(NetworkMonitor.self)!
+    }
+    
+    /// 用户设置
+    var userSettings: UserSettings {
+        return resolve(UserSettings.self)!
+    }
 }
 
 // MARK: - 倉庫實現

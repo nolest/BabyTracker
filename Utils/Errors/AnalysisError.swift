@@ -26,6 +26,9 @@ enum AnalysisError: Error {
     /// 分析器不可用
     case analyzerNotAvailable
     
+    /// 處理錯誤
+    case processingError
+    
     /// 錯誤描述
     var localizedDescription: String {
         switch self {
@@ -45,6 +48,8 @@ enum AnalysisError: Error {
             return "AI分析功能已禁用"
         case .analyzerNotAvailable:
             return "分析器不可用"
+        case .processingError:
+            return "數據處理錯誤"
         }
     }
 }

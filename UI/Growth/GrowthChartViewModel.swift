@@ -29,25 +29,22 @@ class GrowthChartViewModel {
         isLoading = true
         
         // First, get the selected baby ID
-        Task {
-            do {
-                let babies = try await babyRepository.getAllBabies()
-                
+        babyRepository.getAllBabies { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let babies):
                 // Use the first baby or the selected one
                 if let firstBaby = babies.first {
                     self.selectedBabyId = firstBaby.id
-                    await self.loadGrowthData()
+                    self.loadGrowthData()
                 } else {
-                    DispatchQueue.main.async {
-                        self.error = RepositoryError.notFound("沒有找到寶寶資料")
-                        self.isLoading = false
-                    }
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.error = error
+                    self.error = RepositoryError.notFound("沒有找到寶寶資料")
                     self.isLoading = false
                 }
+            case .failure(let error):
+                self.error = error
+                self.isLoading = false
             }
         }
     }
@@ -57,9 +54,7 @@ class GrowthChartViewModel {
         self.currentGrowthType = type
         
         // Reload data with new type
-        Task {
-            await loadGrowthData()
-        }
+        loadGrowthData()
     }
     
     func updateTimeRange(index: Int) {
@@ -67,36 +62,39 @@ class GrowthChartViewModel {
         self.currentTimeRange = range
         
         // Reload data with new time range
-        Task {
-            await loadGrowthData()
-        }
+        loadGrowthData()
     }
     
     // MARK: - Private Methods
-    private func loadGrowthData() async {
+    private func loadGrowthData() {
         guard let babyId = selectedBabyId else {
-            DispatchQueue.main.async {
-                self.error = RepositoryError.notFound("沒有選擇寶寶")
-                self.isLoading = false
-            }
+            self.error = RepositoryError.notFound("沒有選擇寶寶")
+            self.isLoading = false
             return
         }
         
         let dateRange = getDateRange(for: currentTimeRange)
+        let startDate = dateRange.lowerBound
+        let endDate = dateRange.upperBound
         
-        do {
-            let growthRecords = try await growthRepository.getGrowthRecords(babyId: babyId, dateRange: dateRange)
+        growthRepository.getGrowthRecords(forBabyId: babyId) { [weak self] result in
+            guard let self = self else { return }
             
-            // Process growth records based on type
-            let processedData = processGrowthData(growthRecords)
-            
-            DispatchQueue.main.async {
+            switch result {
+            case .success(let growthRecords):
+                // 过滤日期范围内的记录
+                let filteredRecords = growthRecords.filter { 
+                    startDate <= $0.date && $0.date <= endDate 
+                }
+                
+                // Process growth records based on type
+                let processedData = self.processGrowthData(filteredRecords)
+                
                 self.chartData = processedData
                 self.isLoading = false
                 self.error = nil
-            }
-        } catch {
-            DispatchQueue.main.async {
+                
+            case .failure(let error):
                 self.error = error
                 self.isLoading = false
             }
@@ -139,19 +137,25 @@ class GrowthChartViewModel {
             switch currentGrowthType {
             case .height:
                 value = record.height
-                percentile = record.heightPercentile.map { "\($0)%" }
+                if let heightPercentile = record.heightPercentile {
+                    percentile = String(format: "%.1f%%", heightPercentile)
+                }
                 if let avg = calculateAverage(records.map { $0.height }) {
                     average = String(format: "%.1f cm", avg)
                 }
             case .weight:
                 value = record.weight
-                percentile = record.weightPercentile.map { "\($0)%" }
+                if let weightPercentile = record.weightPercentile {
+                    percentile = String(format: "%.1f%%", weightPercentile)
+                }
                 if let avg = calculateAverage(records.map { $0.weight }) {
                     average = String(format: "%.1f kg", avg)
                 }
             case .headCircumference:
                 value = record.headCircumference
-                percentile = record.headCircumferencePercentile.map { "\($0)%" }
+                if let headCircumferencePercentile = record.headCircumferencePercentile {
+                    percentile = String(format: "%.1f%%", headCircumferencePercentile)
+                }
                 if let avg = calculateAverage(records.map { $0.headCircumference }) {
                     average = String(format: "%.1f cm", avg)
                 }

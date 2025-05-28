@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  BabyTracker
+
+  English localization
+*/
+
+"NSCameraUsageDescription" = "Baby Tracker needs access to your camera to take photos of your baby for growth tracking.";
+"NSPhotoLibraryUsageDescription" = "Baby Tracker needs access to your photo library to select photos of your baby for growth tracking.";
+"NSMicrophoneUsageDescription" = "Baby Tracker needs access to your microphone to record baby sounds for sleep monitoring.";
+"NSLocationWhenInUseUsageDescription" = "Baby Tracker uses your location to provide local weather information that may affect baby's sleep and activities.";
+"NSHealthShareUsageDescription" = "Baby Tracker integrates with Health app to store and analyze your baby's health data.";
+"NSHealthUpdateUsageDescription" = "Baby Tracker updates Health app with your baby's growth and activity data.";

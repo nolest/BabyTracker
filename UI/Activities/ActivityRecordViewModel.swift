@@ -65,27 +65,22 @@ class ActivityRecordViewModel {
             return
         }
         
-        // 計算持續時間
-        let duration = endTime.timeIntervalSince(startTime)
-        
         // 創建活動記錄
-        let activityRecord = ActivityRecord(
+        let activity = Activity(
             id: UUID().uuidString,
             babyId: babyId,
             type: activityType,
-            name: activityName,
             startTime: startTime,
             endTime: endTime,
-            duration: duration,
             notes: notes.isEmpty ? nil : notes
         )
         
         // 保存活動記錄
-        activityRepository.addActivity(activityRecord) { [weak self] result in
+        activityRepository.createActivity(activity) { [weak self] result in
             guard let self = self else { return }
             
             // 通知保存完成
-            self.onSaveCompleted?(result.map { _ in () })
+            self.onSaveCompleted?(result)
         }
     }
 }
