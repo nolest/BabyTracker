@@ -10,14 +10,14 @@ class SleepRecordViewModel {
     /// 結束時間
     var endTime: Date = Date().addingTimeInterval(28800) // 默認8小時後
     
-    /// 環境因素
-    var environmentFactors: EnvironmentFactors = .none
+    /// 環境因素選項
+    var environmentFactorsOption: Int = 0
     
-    /// 睡眠中斷
-    var sleepInterruption: SleepInterruption = .none
+    /// 睡眠中斷選項
+    var sleepInterruptionOption: Int = 0
     
     /// 睡眠質量
-    var sleepQuality: SleepQuality = .good
+    var sleepQuality: Int = 2
     
     /// 備註
     var notes: String = ""
@@ -45,8 +45,8 @@ class SleepRecordViewModel {
     
     // MARK: - 公共方法
     
-    /// 保存記錄
-    func saveRecord() {
+    /// 保存睡眠記錄
+    func saveSleepRecord() {
         // 獲取選中的寶寶ID
         guard let babyId = userSettings.selectedBabyId else {
             // 處理錯誤
@@ -61,6 +61,15 @@ class SleepRecordViewModel {
             return
         }
         
+        // 創建環境因素
+        let environmentFactors = createEnvironmentFactors()
+        
+        // 創建睡眠中斷
+        let sleepInterruption = createSleepInterruption()
+        
+        // 創建睡眠質量
+        let quality = convertToSleepQuality(sleepQuality)
+        
         // 計算持續時間
         let duration = endTime.timeIntervalSince(startTime)
         
@@ -70,10 +79,9 @@ class SleepRecordViewModel {
             babyId: babyId,
             startTime: startTime,
             endTime: endTime,
-            duration: duration,
-            environmentFactors: environmentFactors == .none ? nil : environmentFactors,
-            sleepInterruption: sleepInterruption == .none ? nil : sleepInterruption,
-            quality: sleepQuality,
+            quality: quality,
+            environmentFactors: environmentFactors,
+            interruptions: sleepInterruption,
             notes: notes.isEmpty ? nil : notes
         )
         
@@ -83,6 +91,68 @@ class SleepRecordViewModel {
             
             // 通知保存完成
             self.onSaveCompleted?(result.map { _ in () })
+        }
+    }
+    
+    // MARK: - 私有方法
+    
+    /// 創建環境因素
+    private func createEnvironmentFactors() -> EnvironmentFactors? {
+        guard let option = EnvironmentFactorsOption(rawValue: environmentFactorsOption), option != .none else {
+            return nil
+        }
+        
+        switch option {
+        case .none:
+            return nil
+        case .noise:
+            return EnvironmentFactors(noiseLevel: 50)
+        case .light:
+            return EnvironmentFactors(lightLevel: 50)
+        case .temperature:
+            return EnvironmentFactors(temperature: 25.0)
+        case .other:
+            return EnvironmentFactors(humidity: 50.0)
+        }
+    }
+    
+    /// 創建睡眠中斷
+    private func createSleepInterruption() -> SleepInterruption? {
+        guard let option = SleepInterruptionOption(rawValue: sleepInterruptionOption), option != .none else {
+            return nil
+        }
+        
+        let duration: TimeInterval = 900 // 默認15分鐘
+        
+        switch option {
+        case .none:
+            return nil
+        case .crying:
+            return SleepInterruption(duration: duration, reason: "哭鬧")
+        case .feeding:
+            return SleepInterruption(duration: duration, reason: "餵食")
+        case .diaper:
+            return SleepInterruption(duration: duration, reason: "換尿布")
+        case .other:
+            return SleepInterruption(duration: duration, reason: "其他")
+        }
+    }
+    
+    /// 轉換為睡眠質量枚舉
+    private func convertToSleepQuality(_ index: Int) -> Int {
+        switch index {
+        case 0:
+            return 1  // 很差
+        case 1:
+            return 2  // 一般
+        case 2:
+            return 3  // 良好
+        case 3:
+            return 4  // 優秀
+        case 4:
+            return 5  // 極佳
+        default:
+            return 3  // 默認良好
         }
     }
 }

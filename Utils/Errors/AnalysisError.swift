@@ -20,6 +20,12 @@ enum AnalysisError: Error {
     /// 未知錯誤
     case unknown(Error?)
     
+    /// AI分析已禁用
+    case aiAnalysisDisabled
+    
+    /// 分析器不可用
+    case analyzerNotAvailable
+    
     /// 錯誤描述
     var localizedDescription: String {
         switch self {
@@ -35,6 +41,10 @@ enum AnalysisError: Error {
             return "已達到請求限制"
         case .unknown(let error):
             return error?.localizedDescription ?? "未知分析錯誤"
+        case .aiAnalysisDisabled:
+            return "AI分析功能已禁用"
+        case .analyzerNotAvailable:
+            return "分析器不可用"
         }
     }
 }

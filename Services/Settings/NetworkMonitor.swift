@@ -106,6 +106,12 @@ class NetworkMonitor {
         return isCloudAIEnabled
     }
     
+    /// 檢查是否可以使用雲端分析
+    /// - Returns: 是否可以使用雲端分析
+    func canUseCloudAnalysis() -> Bool {
+        return canUseCloudServices()
+    }
+    
     // MARK: - 私有方法
     
     /// 獲取連接類型

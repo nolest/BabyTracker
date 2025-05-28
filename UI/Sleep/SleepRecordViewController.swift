@@ -2,138 +2,7 @@ import UIKit
 
 /// 睡眠記錄視圖控制器
 class SleepRecordViewController: UIViewController {
-    // MARK: - 屬性
-    
-    /// 視圖模型
-    private let viewModel: SleepRecordViewModel
-    
-    /// 開始時間標籤
-    private let startTimeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .label
-        label.text = "開始時間"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    /// 開始時間選擇器
-    private let startTimePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .dateAndTime
-        picker.preferredDatePickerStyle = .wheels
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        return picker
-    }()
-    
-    /// 結束時間標籤
-    private let endTimeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .label
-        label.text = "結束時間"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    /// 結束時間選擇器
-    private let endTimePicker: UIDatePicker = {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .dateAndTime
-        picker.preferredDatePickerStyle = .wheels
-        picker.translatesAutoresizingMaskIntoConstraints = false
-        return picker
-    }()
-    
-    /// 環境因素標籤
-    private let environmentFactorsLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .label
-        label.text = "環境因素"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    /// 環境因素分段控制器
-    private let environmentFactorsSegmentedControl: UISegmentedControl = {
-        let items = ["無", "噪音", "光線", "溫度", "其他"]
-        let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = 0
-        control.translatesAutoresizingMaskIntoConstraints = false
-        return control
-    }()
-    
-    /// 睡眠中斷標籤
-    private let sleepInterruptionLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .label
-        label.text = "睡眠中斷"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    /// 睡眠中斷分段控制器
-    private let sleepInterruptionSegmentedControl: UISegmentedControl = {
-        let items = ["無", "哭鬧", "餵食", "換尿布", "其他"]
-        let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = 0
-        control.translatesAutoresizingMaskIntoConstraints = false
-        return control
-    }()
-    
-    /// 睡眠質量標籤
-    private let sleepQualityLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .label
-        label.text = "睡眠質量"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    /// 睡眠質量分段控制器
-    private let sleepQualitySegmentedControl: UISegmentedControl = {
-        let items = ["差", "一般", "良好", "優秀"]
-        let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = 2
-        control.translatesAutoresizingMaskIntoConstraints = false
-        return control
-    }()
-    
-    /// 備註標籤
-    private let notesLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .label
-        label.text = "備註"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    /// 備註文本視圖
-    private let notesTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont.systemFont(ofSize: 16)
-        textView.layer.borderColor = UIColor.systemGray4.cgColor
-        textView.layer.borderWidth = 1
-        textView.layer.cornerRadius = 8
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
-    }()
-    
-    /// 保存按鈕
-    private let saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("保存", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    // MARK: - 視圖
     
     /// 滾動視圖
     private let scrollView: UIScrollView = {
@@ -149,48 +18,165 @@ class SleepRecordViewController: UIViewController {
         return view
     }()
     
+    /// 開始時間標籤
+    private let startTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "開始時間"
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
+    /// 開始時間選擇器
+    private let startTimePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.datePickerMode = .dateAndTime
+        picker.preferredDatePickerStyle = .wheels
+        return picker
+    }()
+    
+    /// 結束時間標籤
+    private let endTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "結束時間"
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
+    /// 結束時間選擇器
+    private let endTimePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        picker.datePickerMode = .dateAndTime
+        picker.preferredDatePickerStyle = .wheels
+        return picker
+    }()
+    
+    /// 環境因素標籤
+    private let environmentFactorsLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "環境因素"
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
+    /// 環境因素分段控制器
+    private let environmentFactorsSegmentedControl: UISegmentedControl = {
+        let items = EnvironmentFactorsOption.allCases.map { $0.displayName }
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
+    /// 睡眠中斷標籤
+    private let sleepInterruptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "睡眠中斷"
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
+    /// 睡眠中斷分段控制器
+    private let sleepInterruptionSegmentedControl: UISegmentedControl = {
+        let items = SleepInterruptionOption.allCases.map { $0.displayName }
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
+    }()
+    
+    /// 睡眠質量標籤
+    private let sleepQualityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "睡眠質量"
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
+    /// 睡眠質量分段控制器
+    private let sleepQualitySegmentedControl: UISegmentedControl = {
+        let items = ["很差", "一般", "良好", "優秀", "極佳"]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 2
+        return segmentedControl
+    }()
+    
+    /// 備註標籤
+    private let notesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "備註"
+        label.font = .systemFont(ofSize: 17, weight: .medium)
+        return label
+    }()
+    
+    /// 備註文本視圖
+    private let notesTextView: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.font = .systemFont(ofSize: 16)
+        textView.layer.borderColor = UIColor.systemGray4.cgColor
+        textView.layer.borderWidth = 1.0
+        textView.layer.cornerRadius = 8.0
+        return textView
+    }()
+    
+    /// 保存按鈕
+    private let saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("保存", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .medium)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10.0
+        return button
+    }()
+    
+    // MARK: - 屬性
+    
+    /// 視圖模型
+    private let viewModel: SleepRecordViewModel
+    
     // MARK: - 初始化
     
     /// 初始化方法
     /// - Parameter viewModel: 視圖模型
-    init(viewModel: SleepRecordViewModel = SleepRecordViewModel()) {
+    init(viewModel: SleepRecordViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
+    /// 必需的初始化方法
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - 生命週期
     
+    /// 視圖加載完成
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 設置視圖
-        setupView()
-        
-        // 設置導航欄
+        setupUI()
         setupNavigationBar()
-        
-        // 綁定視圖模型
-        bindViewModel()
-        
-        // 設置動作
         setupActions()
-        
-        // 設置手勢識別器
         setupGestureRecognizers()
-        
-        // 更新UI
+        bindViewModel()
         updateUI()
     }
     
-    // MARK: - 私有方法
+    // MARK: - 設置UI
     
-    /// 設置視圖
-    private func setupView() {
-        // 設置背景色
+    /// 設置UI
+    private func setupUI() {
         view.backgroundColor = .systemBackground
         
         // 添加滾動視圖
@@ -369,25 +355,87 @@ class SleepRecordViewController: UIViewController {
         endTimePicker.date = viewModel.endTime
         
         // 更新環境因素分段控制器
-        switch viewModel.environmentFactors {
-        case .none:
-            environmentFactorsSegmentedControl.selectedSegmentIndex = 0
-        case .noise:
-            environmentFactorsSegmentedControl.selectedSegmentIndex = 1
-        case .light:
-            environmentFactorsSegmentedControl.selectedSegmentIndex = 2
-        case .temperature:
-            environmentFactorsSegmentedControl.selectedSegmentIndex = 3
-        case .other:
-            environmentFactorsSegmentedControl.selectedSegmentIndex = 4
+        if let option = EnvironmentFactorsOption(rawValue: viewModel.environmentFactorsOption) {
+            switch option {
+            case .none:
+                environmentFactorsSegmentedControl.selectedSegmentIndex = 0
+            case .noise:
+                environmentFactorsSegmentedControl.selectedSegmentIndex = 1
+            case .light:
+                environmentFactorsSegmentedControl.selectedSegmentIndex = 2
+            case .temperature:
+                environmentFactorsSegmentedControl.selectedSegmentIndex = 3
+            case .other:
+                environmentFactorsSegmentedControl.selectedSegmentIndex = 4
+            }
         }
         
         // 更新睡眠中斷分段控制器
-        switch viewModel.sleepInterruption {
-        case .none:
-            sleepInterruptionSegmentedControl.selectedSegmentIndex = 0
-        case .crying:
-            sleepInterruptionSegmentedControl.selectedSegmentIndex = 1
-        case .feeding:
-            sleepInterruptionSegmentedControl.selectedSegmentInde
-(Content truncated due to size limit. Use line ranges to read in chunks)
+        if let option = SleepInterruptionOption(rawValue: viewModel.sleepInterruptionOption) {
+            switch option {
+            case .none:
+                sleepInterruptionSegmentedControl.selectedSegmentIndex = 0
+            case .crying:
+                sleepInterruptionSegmentedControl.selectedSegmentIndex = 1
+            case .feeding:
+                sleepInterruptionSegmentedControl.selectedSegmentIndex = 2
+            case .diaper:
+                sleepInterruptionSegmentedControl.selectedSegmentIndex = 3
+            case .other:
+                sleepInterruptionSegmentedControl.selectedSegmentIndex = 4
+            }
+        }
+        
+        // 更新睡眠質量分段控制器
+        sleepQualitySegmentedControl.selectedSegmentIndex = viewModel.sleepQuality
+        
+        // 更新備註
+        notesTextView.text = viewModel.notes
+    }
+    
+    // MARK: - 動作方法
+    
+    /// 取消按鈕點擊
+    @objc private func cancelButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /// 開始時間變更
+    @objc private func startTimeChanged() {
+        viewModel.startTime = startTimePicker.date
+    }
+    
+    /// 結束時間變更
+    @objc private func endTimeChanged() {
+        viewModel.endTime = endTimePicker.date
+    }
+    
+    /// 環境因素變更
+    @objc private func environmentFactorsChanged() {
+        viewModel.environmentFactorsOption = environmentFactorsSegmentedControl.selectedSegmentIndex
+    }
+    
+    /// 睡眠中斷變更
+    @objc private func sleepInterruptionChanged() {
+        viewModel.sleepInterruptionOption = sleepInterruptionSegmentedControl.selectedSegmentIndex
+    }
+    
+    /// 睡眠質量變更
+    @objc private func sleepQualityChanged() {
+        viewModel.sleepQuality = sleepQualitySegmentedControl.selectedSegmentIndex
+    }
+    
+    /// 保存按鈕點擊
+    @objc private func saveButtonTapped() {
+        // 更新備註
+        viewModel.notes = notesTextView.text
+        
+        // 保存記錄
+        viewModel.saveSleepRecord()
+    }
+    
+    /// 隱藏鍵盤
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
+    }
+}

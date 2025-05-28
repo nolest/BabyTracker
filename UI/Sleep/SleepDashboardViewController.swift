@@ -409,5 +409,24 @@ class SleepDashboardViewController: UIViewController {
         if let sleepQuality = viewModel.sleepQuality {
             sleepQualityLabel.text = "睡眠質量: \(sleepQuality)"
         } else {
-       
-(Content truncated due to size limit. Use line ranges to read in chunks)
+            sleepQualityLabel.text = "睡眠質量: 無數據"
+        }
+        
+        // 更新睡眠模式
+        if let sleepPattern = viewModel.sleepPattern {
+            sleepPatternLabel.text = "睡眠模式: \(sleepPattern)"
+        } else {
+            sleepPatternLabel.text = "睡眠模式: 無數據"
+        }
+        
+        // 更新圖表
+        updateChart()
+        
+        // 更新分析內容
+        if let analysisResult = viewModel.analysisResult {
+            analysisContentLabel.text = analysisResult
+        } else {
+            analysisContentLabel.text = "尚未進行分析。點擊下方按鈕開始分析您的睡眠數據。"
+        }
+    }
+}

@@ -20,6 +20,24 @@ class UserSettings {
         }
     }
     
+    /// 是否啟用AI分析
+    var isAIAnalysisEnabled: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: Constants.UserDefaultsKeys.isAIAnalysisEnabled)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Constants.UserDefaultsKeys.isAIAnalysisEnabled)
+            notifySettingsChanged()
+        }
+    }
+    
+    /// 是否使用雲端分析
+    var useCloudAnalysis: Bool {
+        get {
+            return isCloudAIEnabled
+        }
+    }
+    
     /// 是否啟用數據匿名化
     var isDataAnonymizationEnabled: Bool {
         get {
@@ -121,6 +139,7 @@ class UserSettings {
     func resetAllSettings() {
         // 重置設置
         isCloudAIEnabled = false
+        isAIAnalysisEnabled = false
         isDataAnonymizationEnabled = true
         isNotificationEnabled = true
         theme = .system
@@ -140,6 +159,7 @@ class UserSettings {
         if isFirstLaunch {
             // 設置默認值
             isCloudAIEnabled = false
+            isAIAnalysisEnabled = false
             isDataAnonymizationEnabled = true
             isNotificationEnabled = true
             theme = .system

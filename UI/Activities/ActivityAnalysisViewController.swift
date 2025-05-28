@@ -399,5 +399,25 @@ class ActivityAnalysisViewController: UIViewController {
         let endDate = Date()
         var startDate: Date
         
-        switch dat
-(Content truncated due to size limit. Use line ranges to read in chunks)
+        switch dateRangeSegmentedControl.selectedSegmentIndex {
+        case 0: // 本週
+            startDate = Calendar.current.date(byAdding: .day, value: -7, to: endDate)!
+        case 1: // 本月
+            startDate = Calendar.current.date(byAdding: .month, value: -1, to: endDate)!
+        case 2: // 本季
+            startDate = Calendar.current.date(byAdding: .month, value: -3, to: endDate)!
+        default: // 今年
+            startDate = Calendar.current.date(byAdding: .year, value: -1, to: endDate)!
+        }
+        
+        return (startDate, endDate)
+    }
+    
+    /// 顯示錯誤
+    /// - Parameter error: 錯誤
+    private func showError(_ error: Error) {
+        let alert = UIAlertController(title: "錯誤", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "確定", style: .default))
+        present(alert, animated: true)
+    }
+}

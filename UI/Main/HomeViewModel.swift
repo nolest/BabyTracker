@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 /// 首頁視圖模型
 class HomeViewModel {

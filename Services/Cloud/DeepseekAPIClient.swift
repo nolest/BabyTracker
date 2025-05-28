@@ -43,17 +43,18 @@ class DeepseekAPIClient {
     /// 分析睡眠數據
     /// - Parameter data: 匿名化的睡眠數據
     /// - Returns: 分析結果或錯誤
-    func analyzeSleep(data: AnonymizedSleepData) async -> Result<DeepseekSleepAnalysisResponse, APIError> {
+    func analyzeSleep(data: [SleepRecord]) async -> Result<DeepseekSleepAnalysisResponse, APIError> {
+        let anonymizedData: [String: Any] = ["sleepRecords": data]
         return await sendRequest(
             endpoint: APIEndpoints.sleepAnalysis,
-            body: data
+            body: anonymizedData
         )
     }
     
     /// 分析作息數據
     /// - Parameter data: 匿名化的作息數據
     /// - Returns: 分析結果或錯誤
-    func analyzeRoutine(data: AnonymizedRoutineData) async -> Result<DeepseekRoutineAnalysisResponse, APIError> {
+    func analyzeRoutine(data: [String: Any]) async -> Result<DeepseekRoutineAnalysisResponse, APIError> {
         return await sendRequest(
             endpoint: APIEndpoints.routineAnalysis,
             body: data
@@ -66,14 +67,14 @@ class DeepseekAPIClient {
     ///   - routineData: 匿名化的作息數據
     /// - Returns: 預測結果或錯誤
     func generatePrediction(
-        sleepData: AnonymizedSleepData,
-        routineData: AnonymizedRoutineData
+        sleepData: [SleepRecord],
+        routineData: [String: Any]
     ) async -> Result<DeepseekPredictionResponse, APIError> {
         // 創建組合請求數據
-        let combinedData = DeepseekPredictionRequest(
-            sleepData: sleepData,
-            routineData: routineData
-        )
+        let combinedData: [String: Any] = [
+            "sleepData": sleepData,
+            "routineData": routineData
+        ]
         
         return await sendRequest(
             endpoint: APIEndpoints.predictionGenerate,
@@ -160,6 +161,14 @@ class DeepseekAPIClient {
         }
     }
 }
+
+// MARK: - 類型定義
+
+/// 匿名化的睡眠數據類型定義
+typealias AnonymizedSleepData = [SleepRecord]
+
+/// 匿名化的作息數據類型定義
+typealias AnonymizedRoutineData = [String: Any]
 
 // MARK: - 請求和響應模型
 

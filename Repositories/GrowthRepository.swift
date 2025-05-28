@@ -85,11 +85,11 @@ struct WHOPercentiles {
 }
 
 /// 成長記錄倉庫實現
-class GrowthRepositoryImpl: GrowthRepository {
+class GrowthRepositoryImplementation: GrowthRepository {
     // MARK: - 單例
     
     /// 共享實例
-    static let shared = GrowthRepositoryImpl()
+    static let shared = GrowthRepositoryImplementation()
     
     // MARK: - 屬性
     

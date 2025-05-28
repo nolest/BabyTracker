@@ -413,5 +413,72 @@ class HomeViewController: UIViewController {
             feedingCountLabel.leadingAnchor.constraint(equalTo: todaySummaryView.centerXAnchor),
             
             // 餵食次數值標籤
-            feedingCountValueLabel.topAnchor.con
-(Content truncated due to size limit. Use line ranges to read in chunks)
+            feedingCountValueLabel.topAnchor.constraint(equalTo: feedingCountLabel.bottomAnchor, constant: 4),
+            feedingCountValueLabel.leadingAnchor.constraint(equalTo: todaySummaryView.centerXAnchor),
+            
+            // 尿布次數標籤
+            diaperCountLabel.topAnchor.constraint(equalTo: sleepTimeValueLabel.bottomAnchor, constant: 16),
+            diaperCountLabel.leadingAnchor.constraint(equalTo: todaySummaryView.leadingAnchor, constant: 16),
+            
+            // 尿布次數值標籤
+            diaperCountValueLabel.topAnchor.constraint(equalTo: diaperCountLabel.bottomAnchor, constant: 4),
+            diaperCountValueLabel.leadingAnchor.constraint(equalTo: todaySummaryView.leadingAnchor, constant: 16),
+            
+            // 活動次數標籤
+            activityCountLabel.topAnchor.constraint(equalTo: feedingCountValueLabel.bottomAnchor, constant: 16),
+            activityCountLabel.leadingAnchor.constraint(equalTo: todaySummaryView.centerXAnchor),
+            
+            // 活動次數值標籤
+            activityCountValueLabel.topAnchor.constraint(equalTo: activityCountLabel.bottomAnchor, constant: 4),
+            activityCountValueLabel.leadingAnchor.constraint(equalTo: todaySummaryView.centerXAnchor),
+            
+            // AI分析標籤
+            aiAnalysisLabel.topAnchor.constraint(equalTo: todaySummaryView.bottomAnchor, constant: 24),
+            aiAnalysisLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            aiAnalysisLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            // AI分析視圖
+            aiAnalysisView.topAnchor.constraint(equalTo: aiAnalysisLabel.bottomAnchor, constant: 8),
+            aiAnalysisView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            aiAnalysisView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            aiAnalysisView.heightAnchor.constraint(equalToConstant: 120),
+            aiAnalysisView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+            
+            // AI分析內容標籤
+            aiAnalysisContentLabel.topAnchor.constraint(equalTo: aiAnalysisView.topAnchor, constant: 16),
+            aiAnalysisContentLabel.leadingAnchor.constraint(equalTo: aiAnalysisView.leadingAnchor, constant: 16),
+            aiAnalysisContentLabel.trailingAnchor.constraint(equalTo: aiAnalysisView.trailingAnchor, constant: -16),
+            aiAnalysisContentLabel.bottomAnchor.constraint(equalTo: aiAnalysisView.bottomAnchor, constant: -16)
+        ])
+    }
+    
+    /// 設置導航欄
+    private func setupNavigationBar() {
+        // Implementation needed
+    }
+    
+    /// 設置表格視圖
+    private func setupTableView() {
+        // Implementation needed
+    }
+    
+    /// 設置集合視圖
+    private func setupCollectionView() {
+        // Implementation needed
+    }
+    
+    /// 設置刷新控制
+    private func setupRefreshControl() {
+        // Implementation needed
+    }
+    
+    /// 綁定視圖模型
+    private func bindViewModel() {
+        // Implementation needed
+    }
+    
+    /// 加載數據
+    private func loadData() {
+        // Implementation needed
+    }
+}

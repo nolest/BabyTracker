@@ -47,44 +47,52 @@ class ActivityAnalysisViewModel {
     ///   - startDate: 開始日期
     ///   - endDate: 結束日期
     func loadData(from startDate: Date, to endDate: Date) {
-        activityRepository.getActivities(from: startDate, to: endDate)
-            .flatMap { [weak self] activities -> AnyPublisher<[Activity], Error> in
-                guard let self = self else {
-                    return Fail(error: AnalysisError.analyzerNotAvailable).eraseToAnyPublisher()
-                }
-                
+        // 创建日期范围
+        let dateRange = startDate...endDate
+        
+        // 获取当前用户选择的宝宝ID
+        guard let babyId = UserSettings.shared.selectedBabyId else {
+            onError?(RepositoryError.invalidData)
+            return
+        }
+        
+        // 调用API获取活动记录
+        activityRepository.getActivities(babyId: babyId, dateRange: dateRange) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let activities):
                 self.activities = activities
                 
-                // 計算活動持續時間統計
+                // 计算活动持续时间统计
                 self.calculateActivityDurationSummary()
                 
-                // 如果沒有活動記錄，直接返回
+                // 如果没有活动记录，直接返回
                 if activities.isEmpty {
                     self.activityPatternSummary = "沒有足夠的活動記錄進行分析"
-                    return Just(activities).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    self.onDataLoaded?()
+                    return
                 }
                 
-                // 分析活動模式
-                return self.routineAnalyzer.analyzeActivityPattern(activities: activities)
-                    .map { analysis in
-                        // 設置活動模式摘要
+                // 分析活动模式
+                self.routineAnalyzer.analyzeActivityPattern(activities: activities) { [weak self] result in
+                    guard let self = self else { return }
+                    
+                    switch result {
+                    case .success(let analysis):
+                        // 设置活动模式摘要
                         self.activityPatternSummary = analysis.summary
+                        self.onDataLoaded?()
                         
-                        return activities
+                    case .failure(let error):
+                        self.onError?(error)
                     }
-                    .eraseToAnyPublisher()
-            }
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    if case .failure(let error) = completion {
-                        self?.onError?(error)
-                    }
-                },
-                receiveValue: { [weak self] _ in
-                    self?.onDataLoaded?()
                 }
-            )
-            .store(in: &cancellables)
+                
+            case .failure(let error):
+                self.onError?(error)
+            }
+        }
     }
     
     // MARK: - 私有方法

@@ -5,6 +5,9 @@ enum NetworkError: Error {
     /// 無網絡連接
     case noConnection
     
+    /// 無網絡連接（同noConnection，用於兼容性）
+    case noInternetConnection
+    
     /// 請求超時
     case timeout
     
@@ -27,6 +30,8 @@ enum NetworkError: Error {
     var localizedDescription: String {
         switch self {
         case .noConnection:
+            return "無網絡連接"
+        case .noInternetConnection:
             return "無網絡連接"
         case .timeout:
             return "請求超時"

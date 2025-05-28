@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 /// 字符串擴展
 extension String {

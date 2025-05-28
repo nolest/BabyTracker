@@ -60,12 +60,18 @@ class DataAnonymizer {
             babyId: anonymizeIdentifier(sleepRecord.babyId),
             startTime: sleepRecord.startTime,
             endTime: sleepRecord.endTime,
-            duration: sleepRecord.duration,
             quality: sleepRecord.quality,
             environmentFactors: sleepRecord.environmentFactors,
             interruptions: sleepRecord.interruptions,
             notes: nil // 移除筆記
         )
+    }
+    
+    /// 匿名化多個睡眠記錄
+    /// - Parameter sleepRecords: 睡眠記錄數組
+    /// - Returns: 匿名化後的睡眠記錄數組
+    func anonymizeSleepRecords(_ sleepRecords: [SleepRecord]) -> [SleepRecord] {
+        return sleepRecords.map { anonymizeSleepRecord($0) }
     }
     
     /// 匿名化餵食記錄
@@ -82,7 +88,6 @@ class DataAnonymizer {
             id: anonymizeIdentifier(feedingRecord.id),
             babyId: anonymizeIdentifier(feedingRecord.babyId),
             startTime: feedingRecord.startTime,
-            duration: feedingRecord.duration,
             type: feedingRecord.type,
             amount: feedingRecord.amount,
             notes: nil // 移除筆記
@@ -103,11 +108,33 @@ class DataAnonymizer {
             id: anonymizeIdentifier(activity.id),
             babyId: anonymizeIdentifier(activity.babyId),
             startTime: activity.startTime,
-            duration: activity.duration,
             type: activity.type,
-            name: anonymizeName(activity.name),
             notes: nil // 移除筆記
         )
+    }
+    
+    /// 匿名化作息記錄
+    /// - Parameters:
+    ///   - sleepRecords: 睡眠記錄
+    ///   - feedingRecords: 餵食記錄
+    ///   - activities: 活動記錄
+    /// - Returns: 匿名化的作息數據
+    func anonymizeRoutineRecords(
+        sleepRecords: [SleepRecord],
+        feedingRecords: [FeedingRecord],
+        activities: [Activity]
+    ) -> [String: Any] {
+        // 匿名化所有記錄
+        let anonymizedSleepRecords = sleepRecords.map { anonymizeSleepRecord($0) }
+        let anonymizedFeedingRecords = feedingRecords.map { anonymizeFeedingRecord($0) }
+        let anonymizedActivities = activities.map { anonymizeActivity($0) }
+        
+        // 返回匿名化數據字典
+        return [
+            "sleepRecords": anonymizedSleepRecords,
+            "feedingRecords": anonymizedFeedingRecords,
+            "activities": anonymizedActivities
+        ]
     }
     
     /// 匿名化成長記錄
