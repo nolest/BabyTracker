@@ -1,0 +1,119 @@
+/* 
+  Localizable.strings
+  BabyTracker
+  
+  Simplified Chinese Localization
+*/
+
+// Tab Bar
+"home" = "首页";
+"record" = "记录";
+"statistics" = "统计";
+"settings" = "设置";
+
+// Home View
+"today" = "今日";
+"recent_activities" = "最近活动";
+"quick_actions" = "快速操作";
+"baby_status" = "宝宝状态";
+"last_feeding" = "最近喂食";
+"last_diaper" = "最近换尿布";
+"last_sleep" = "最近睡眠";
+"add_record" = "新增记录";
+
+// Record View
+"feeding" = "喂食";
+"diaper" = "尿布";
+"sleep" = "睡眠";
+"growth" = "成长";
+"milestone" = "里程碑";
+"happy_moment" = "欢乐时光";
+"custom" = "自定义";
+"start" = "开始";
+"stop" = "停止";
+"save" = "保存";
+"cancel" = "取消";
+"delete" = "删除";
+"edit" = "编辑";
+
+// Feeding
+"breast_feeding" = "母乳喂食";
+"bottle_feeding" = "母乳瓶喂";
+"formula" = "配方奶";
+"solid_food" = "辅食";
+"left_breast" = "左侧乳房";
+"right_breast" = "右侧乳房";
+"amount" = "数量";
+"duration" = "时间";
+"set_reminder" = "设置提醒";
+
+// Diaper
+"wet" = "小便";
+"dirty" = "大便";
+"mixed" = "混合";
+"dry" = "干爽";
+"condition" = "状态";
+
+// Sleep
+"asleep" = "入睡";
+"awake" = "醒来";
+"quality" = "质量";
+"environment" = "环境";
+
+// Growth
+"weight" = "体重";
+"height" = "身高";
+"head_circumference" = "头围";
+
+// Statistics View
+"daily" = "每日";
+"weekly" = "每周";
+"monthly" = "每月";
+"feeding_stats" = "喂食统计";
+"diaper_stats" = "尿布统计";
+"sleep_stats" = "睡眠统计";
+"growth_stats" = "成长统计";
+"export" = "导出";
+"share" = "分享";
+
+// Settings View
+"baby_info" = "宝宝信息";
+"name" = "姓名";
+"birth_date" = "出生日期";
+"gender" = "性别";
+"male" = "男";
+"female" = "女";
+"other" = "其他";
+"app_settings" = "应用设置";
+"language" = "语言";
+"theme" = "主题";
+"light" = "浅色";
+"dark" = "深色";
+"system" = "系统";
+"notifications" = "通知";
+"ai_features" = "AI功能";
+"enable_ai" = "启用AI分析";
+"about" = "关于";
+"privacy_policy" = "隐私政策";
+"terms_of_service" = "服务条款";
+"version" = "版本";
+
+// AI Features
+"sleep_analysis" = "睡眠分析";
+"feeding_analysis" = "喂食分析";
+"growth_analysis" = "成长分析";
+"smart_suggestions" = "智能建议";
+"ai_enabled" = "AI功能已启用";
+"ai_disabled" = "AI功能已停用";
+
+// Alerts
+"alert" = "提醒";
+"success" = "成功";
+"error" = "错误";
+"warning" = "警告";
+"confirm" = "确认";
+"record_saved" = "记录已保存";
+"record_deleted" = "记录已删除";
+"delete_confirmation" = "确定要删除此记录吗？";
+"this_action_cannot_be_undone" = "此操作无法撤销。";
+"ok" = "确定";

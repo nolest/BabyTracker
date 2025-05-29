@@ -1,0 +1,10 @@
+一.安裝ruby 版本管理工具 rvm
+二.安裝ruby
+三.安裝brew
+四.安裝cocospod 、bundle（bundle用於執行pod命令并且可以控制版本 bundle exec pod deintegrate  bundle exec pod pod install --repo-update)
+五.下載manus代碼包，從xcode添加代碼包中正確的目錄
+六.生成podfile文件，podfile中的SDK版本需要和xcode的minimum sdk一致，此處需要多次修改至與sdk和代碼兼容的狀態
+七.執行pod install（此處可能存在brew ruby cocospod版本不兼容的情況）
+八.確保代碼文件名稱、類名不重複（代碼中會有重複定義，代碼文件可能出現重複，特別是info.plist，需要在Build Phases -> Copy Bundle Resources中檢查是否有多個源，若是，需要刪除后執行pod install ）
+九.五~九出現問題時需要xcode清理緩存（步驟是product - clean build folder, 然後命令行在當前目錄執行rm -rf ~/Library/Developer/Xcode/DerivedData
+十.關閉Build Settings的User Script Sandboxing

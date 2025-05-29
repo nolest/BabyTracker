@@ -1,0 +1,119 @@
+/* 
+  Localizable.strings
+  BabyTracker
+  
+  English Localization
+*/
+
+// Tab Bar
+"home" = "Home";
+"record" = "Record";
+"statistics" = "Statistics";
+"settings" = "Settings";
+
+// Home View
+"today" = "Today";
+"recent_activities" = "Recent Activities";
+"quick_actions" = "Quick Actions";
+"baby_status" = "Baby Status";
+"last_feeding" = "Last Feeding";
+"last_diaper" = "Last Diaper";
+"last_sleep" = "Last Sleep";
+"add_record" = "Add Record";
+
+// Record View
+"feeding" = "Feeding";
+"diaper" = "Diaper";
+"sleep" = "Sleep";
+"growth" = "Growth";
+"milestone" = "Milestone";
+"happy_moment" = "Happy Moment";
+"custom" = "Custom";
+"start" = "Start";
+"stop" = "Stop";
+"save" = "Save";
+"cancel" = "Cancel";
+"delete" = "Delete";
+"edit" = "Edit";
+
+// Feeding
+"breast_feeding" = "Breast Feeding";
+"bottle_feeding" = "Bottle Feeding";
+"formula" = "Formula";
+"solid_food" = "Solid Food";
+"left_breast" = "Left Breast";
+"right_breast" = "Right Breast";
+"amount" = "Amount";
+"duration" = "Duration";
+"set_reminder" = "Set Reminder";
+
+// Diaper
+"wet" = "Wet";
+"dirty" = "Dirty";
+"mixed" = "Mixed";
+"dry" = "Dry";
+"condition" = "Condition";
+
+// Sleep
+"asleep" = "Asleep";
+"awake" = "Awake";
+"quality" = "Quality";
+"environment" = "Environment";
+
+// Growth
+"weight" = "Weight";
+"height" = "Height";
+"head_circumference" = "Head Circumference";
+
+// Statistics View
+"daily" = "Daily";
+"weekly" = "Weekly";
+"monthly" = "Monthly";
+"feeding_stats" = "Feeding Statistics";
+"diaper_stats" = "Diaper Statistics";
+"sleep_stats" = "Sleep Statistics";
+"growth_stats" = "Growth Statistics";
+"export" = "Export";
+"share" = "Share";
+
+// Settings View
+"baby_info" = "Baby Information";
+"name" = "Name";
+"birth_date" = "Birth Date";
+"gender" = "Gender";
+"male" = "Male";
+"female" = "Female";
+"other" = "Other";
+"app_settings" = "App Settings";
+"language" = "Language";
+"theme" = "Theme";
+"light" = "Light";
+"dark" = "Dark";
+"system" = "System";
+"notifications" = "Notifications";
+"ai_features" = "AI Features";
+"enable_ai" = "Enable AI Analysis";
+"about" = "About";
+"privacy_policy" = "Privacy Policy";
+"terms_of_service" = "Terms of Service";
+"version" = "Version";
+
+// AI Features
+"sleep_analysis" = "Sleep Analysis";
+"feeding_analysis" = "Feeding Analysis";
+"growth_analysis" = "Growth Analysis";
+"smart_suggestions" = "Smart Suggestions";
+"ai_enabled" = "AI Features Enabled";
+"ai_disabled" = "AI Features Disabled";
+
+// Alerts
+"alert" = "Alert";
+"success" = "Success";
+"error" = "Error";
+"warning" = "Warning";
+"confirm" = "Confirm";
+"record_saved" = "Record Saved";
+"record_deleted" = "Record Deleted";
+"delete_confirmation" = "Are you sure you want to delete this record?";
+"this_action_cannot_be_undone" = "This action cannot be undone.";
+"ok" = "OK";
